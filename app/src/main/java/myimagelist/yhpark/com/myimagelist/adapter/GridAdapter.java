@@ -1,4 +1,4 @@
-package myimagelist.yhpark.com.myimagelist;
+package myimagelist.yhpark.com.myimagelist.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,10 @@ import android.widget.ArrayAdapter;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
+
+import myimagelist.yhpark.com.myimagelist.objects.ImageObject;
+import myimagelist.yhpark.com.myimagelist.R;
+import myimagelist.yhpark.com.myimagelist.objects.ViewHolder;
 
 /**
  * Created by YHPark on 2016-05-07.

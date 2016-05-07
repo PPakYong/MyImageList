@@ -1,4 +1,4 @@
-package myimagelist.yhpark.com.myimagelist;
+package myimagelist.yhpark.com.myimagelist.util;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -14,6 +14,9 @@ import java.net.MalformedURLException;
 import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.List;
+
+import myimagelist.yhpark.com.myimagelist.interfaces.IWebPageLoader;
+import myimagelist.yhpark.com.myimagelist.objects.ImageObject;
 
 /**
  * Created by YHPark on 2016-05-07.

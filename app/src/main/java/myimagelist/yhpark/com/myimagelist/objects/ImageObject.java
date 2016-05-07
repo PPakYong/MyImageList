@@ -1,4 +1,4 @@
-package myimagelist.yhpark.com.myimagelist;
+package myimagelist.yhpark.com.myimagelist.objects;
 
 /**
  * Created by YHPark on 2016-05-07.

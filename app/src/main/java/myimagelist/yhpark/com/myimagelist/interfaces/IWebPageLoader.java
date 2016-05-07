@@ -1,6 +1,8 @@
-package myimagelist.yhpark.com.myimagelist;
+package myimagelist.yhpark.com.myimagelist.interfaces;
 
 import java.util.List;
+
+import myimagelist.yhpark.com.myimagelist.objects.ImageObject;
 
 /**
  * Created by YHPark on 2016-05-07.

@@ -1,7 +1,9 @@
-package myimagelist.yhpark.com.myimagelist;
+package myimagelist.yhpark.com.myimagelist.objects;
 
 import android.view.View;
 import android.widget.ImageView;
+
+import myimagelist.yhpark.com.myimagelist.R;
 
 /**
  * Created by YHPark on 2016-05-07.
