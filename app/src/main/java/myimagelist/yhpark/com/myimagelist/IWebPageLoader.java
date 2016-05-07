@@ -3,9 +3,12 @@ package myimagelist.yhpark.com.myimagelist;
 import java.util.List;
 
 /**
- * Created by ppyh0 on 2016-05-07.
+ * Created by YHPark on 2016-05-07.
  */
 public interface IWebPageLoader {
-    void onProgress(int values, ImageObject list);
-    void onComplete(List<ImageObject> list);
+    /**
+     * WebPageLoader가 완료되었을 때 (onPostExecute) 호출
+     * @param item
+     */
+    void onComplete(List<ImageObject> item);
 }

@@ -1,19 +1,10 @@
 package myimagelist.yhpark.com.myimagelist;
 
-import android.content.Context;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
-
-import com.bumptech.glide.Glide;
-
-import java.util.ArrayList;
-import java.util.List;
-
 /**
- * Created by ppyh0 on 2016-05-07.
+ * Created by YHPark on 2016-05-07.
  */
-public class RecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
+@Deprecated
+public class RecyclerAdapter {}/*extends RecyclerView.Adapter<ViewHolder> {
     private List<ImageObject> item = new ArrayList<ImageObject>();
     private Context context = null;
 
@@ -41,4 +32,4 @@ public class RecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
     public List<ImageObject> getItem() {
         return item;
     }
-}
+}*/

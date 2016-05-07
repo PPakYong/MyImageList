@@ -1,7 +1,7 @@
 package myimagelist.yhpark.com.myimagelist;
 
 /**
- * Created by ppyh0 on 2016-05-07.
+ * Created by YHPark on 2016-05-07.
  */
 public class ImageObject {
     private String imgUrl;

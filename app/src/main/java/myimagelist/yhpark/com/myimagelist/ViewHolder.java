@@ -1,13 +1,12 @@
 package myimagelist.yhpark.com.myimagelist;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
 /**
- * Created by ppyh0 on 2016-05-07.
+ * Created by YHPark on 2016-05-07.
  */
-public class ViewHolder extends RecyclerView.ViewHolder {
+public class ViewHolder { //extends RecyclerView.ViewHolder
     private ImageView imageView;
 
     public ImageView getImageView() {
@@ -15,7 +14,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
     }
 
     public ViewHolder(View itemView) {
-        super(itemView);
+//        super(itemView);
         imageView = (ImageView) itemView.findViewById(R.id.imageView);
     }
 }

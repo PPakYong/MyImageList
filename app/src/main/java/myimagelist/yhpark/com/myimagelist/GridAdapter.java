@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 /**
- * Created by ppyh0 on 2016-05-07.
+ * Created by YHPark on 2016-05-07.
  */
 public class GridAdapter extends ArrayAdapter<ImageObject> {
 
@@ -31,7 +31,12 @@ public class GridAdapter extends ArrayAdapter<ImageObject> {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        Glide.with(getContext()).load(getItem(position).getImgUrl()).fitCenter().into(holder.getImageView());
+        //Glide Library 이용해서 web image를 가져온다.
+        Glide.with(getContext())
+                .load(getItem(position).getImgUrl())    // url을 통해 이미지를 가져온다
+                .thumbnail(0.1f)                        // 원본 이미지의 10%를 먼저 로딩해서 썸네일로 보여준다
+                .fitCenter()                            // ScaleType을 fitCenter로 맞춰준다
+                .into(holder.getImageView());           // view에 이미지를 넣어준다
         return convertView;
     }
 }

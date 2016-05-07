@@ -2,16 +2,20 @@ package myimagelist.yhpark.com.myimagelist;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.widget.GridView;
 
 import java.util.List;
 
+/**
+ * Created by YHPark on 2016-05-02.
+ * 2016.05.07 : RecyclerView - Glide 연계 사용 시 Scroll lag 발생(미해결) > GridView로 대체
+ */
 public class MainActivity extends AppCompatActivity implements IWebPageLoader{
     private final String pageUrl = "http://www.gettyimagesgallery.com/collections/archive/slim-aarons.aspx";
 
-    private RecyclerView recyclerView;
-    private RecyclerAdapter recyclerAdapter;
+//    private RecyclerView recyclerView;
+//    private RecyclerAdapter recyclerAdapter;
+
     private WebPageLoader loader;
 
     private GridView gridView;
@@ -30,12 +34,6 @@ public class MainActivity extends AppCompatActivity implements IWebPageLoader{
 
         loader = new WebPageLoader(this, this);
         loader.execute(new String[]{pageUrl});
-    }
-
-    @Override
-    public void onProgress(int values, ImageObject object) {
-//        adapter.getItem().add(object);
-//        adapter.notifyDataSetChanged();
     }
 
     @Override
