@@ -1,89 +1,56 @@
 package myimagelist.yhpark.com.myimagelist;
 
-import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
+import android.support.v7.widget.RecyclerView;
+import android.widget.GridView;
 
-import com.bumptech.glide.Glide;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
-    ArrayList<String> imageList = new ArrayList<>();
-    ListView listView;
+public class MainActivity extends AppCompatActivity implements IWebPageLoader{
+    private final String pageUrl = "http://www.gettyimagesgallery.com/collections/archive/slim-aarons.aspx";
+
+    private RecyclerView recyclerView;
+    private RecyclerAdapter recyclerAdapter;
+    private WebPageLoader loader;
+
+    private GridView gridView;
+    private GridAdapter gridAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        listView = (ListView) findViewById(R.id.listView);
 
-        task.execute();
+//        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+//        recyclerView.getRecycledViewPool().setMaxRecycledViews(0, 50);
+//        onComplete(new ArrayList<ImageObject>());
+
+        gridView = (GridView) findViewById(R.id.gridView);
+
+        loader = new WebPageLoader(this, this);
+        loader.execute(new String[]{pageUrl});
     }
 
-    AsyncTask task = new AsyncTask() {
-        InputStream in;
+    @Override
+    public void onProgress(int values, ImageObject object) {
+//        adapter.getItem().add(object);
+//        adapter.notifyDataSetChanged();
+    }
 
-        @Override
-        protected Object doInBackground(Object[] params) {
-            Log.i(getClass().getSimpleName(), "doInBackground");
-            try {
-                Document document = Jsoup.connect("http://www.gettyimagesgallery.com/collections/archive/slim-aarons.aspx").get();
-                Elements item = document.getElementsByTag("img");
+    @Override
+    public void onComplete(List<ImageObject> list) {
+    /*
+//        LinearLayoutManager manager = new LinearLayoutManager(getApplicationContext());
+        GridLayoutManager manager = new GridLayoutManager(getApplicationContext(), 3);
+//        StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(3,1);
+        adapter = new RecyclerAdapter(getApplicationContext(), list);
 
-                for (int i = 0; i < item.size(); i++) {
-                    imageList.add(item.get(i).attr("abs:src"));
-                }
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setAdapter(adapter);
+    */
 
-                return imageList;
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Object o) {
-            super.onPostExecute(o);
-            listView.setAdapter(new MyImageAdapter(getApplicationContext(), R.layout.row_image, (ArrayList) o));
-        }
-    };
-
-    class MyImageAdapter extends ArrayAdapter<String> {
-        LayoutInflater inflater;
-        public MyImageAdapter(Context context, int resource, List<String> objects) {
-            super(context, resource, objects);
-            inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            if (null == convertView) {
-                convertView = new ImageView(getContext());
-                ((ImageView) convertView).setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-            }
-
-            Glide.with(getContext()).load(getItem(position)).into((ImageView) convertView);
-            return convertView;
-        }
+        gridAdapter = new GridAdapter(getApplicationContext(), R.layout.row_image, list);
+        gridView.setAdapter(gridAdapter);
     }
 }
