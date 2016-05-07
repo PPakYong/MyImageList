@@ -27,7 +27,7 @@ public class WebPageLoader extends AsyncTask<String, Object, List<ImageObject>> 
 
     private ProgressDialog dialog;
 
-    WebPageLoader(Context context, IWebPageLoader listener) {
+    public WebPageLoader(Context context, IWebPageLoader listener) {
         this.context = context;
         this.listener = listener;
     }

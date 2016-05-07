@@ -6,7 +6,7 @@ package myimagelist.yhpark.com.myimagelist.objects;
 public class ImageObject {
     private String imgUrl;
 
-    ImageObject(String imgUrl) {
+    public ImageObject(String imgUrl) {
         setImgUrl(imgUrl);
     }
 
