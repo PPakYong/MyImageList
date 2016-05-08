@@ -52,6 +52,11 @@ public class WebPageLoader extends AsyncTask<String, Object, List<ImageObject>> 
         List<ImageObject> list = new ArrayList<ImageObject>();
 
         try {
+            //html 문서를 읽어온다.
+            Document document = Jsoup.connect(params[0]).get();
+
+            /*gif와 text image까지 모두 가져올 경우
+
             Document document = Jsoup.connect(params[0]).get();
             Elements item = document.getElementsByTag("img");
 
@@ -64,18 +69,48 @@ public class WebPageLoader extends AsyncTask<String, Object, List<ImageObject>> 
                     list.add(object);
                 }
                 publishProgress(new Object[]{i, object});
+            }*/
+
+
+            //slider 내에 있는 이미지는 id값을 이용해서 element를 가져온다.
+            Elements element = document.getElementById("slider").getElementsByAttribute("src");
+            for (int i = 0; i < element.size(); i++) {
+                ImageObject object = new ImageObject(element.get(i).attr("abs:src"), "slider image " + (i + 1));
+                list.add(object);
+            }
+
+            /*중앙 메인 이미지들과 그 link에 기록된 text를 가져올 경우
+            <body>
+                <form name="apsnetForm"  ...>
+                   <div id="middle-content-bg">
+                     <div id="middle-content-main">
+                         <div class="content">
+                             <div class="fullwidthbordertop">
+                                 <div class="pageimageheaders">
+                                    <div class="gallery-wrap exitemrepeater">
+                                        <div class="gallery-item-group exitemrepeater">    <-- 이 곳에 정보가 기록되어 있다. */
+
+
+            Elements imgList = document.getElementsByClass("gallery-item-group");
+            dialog.setMax(imgList.size());
+
+            for (int i = 0; i < imgList.size(); i++) {
+                Thread.sleep(1);
+                ImageObject object = new ImageObject(imgList.get(i).getElementsByAttribute("src").attr("abs:src"), imgList.get(i).getElementsByAttribute("href").get(1).text());
+                list.add(object);
+                publishProgress(new Object[]{i, object});
             }
         } catch (MalformedURLException e) {
-            Toast.makeText(context, "MalformedURLException", Toast.LENGTH_SHORT).show();
+            publishProgress(new Object[]{"MalformedURLException"});
             e.printStackTrace();
         } catch (SocketTimeoutException e) {
-            Toast.makeText(context, "SocketTimeoutException", Toast.LENGTH_SHORT).show();
+            publishProgress(new Object[]{"SocketTimeoutException"});
             e.printStackTrace();
         } catch (IOException e) {
-            Toast.makeText(context, "IOException", Toast.LENGTH_SHORT).show();
+            publishProgress(new Object[]{"IOException"});
             e.printStackTrace();
         } catch (InterruptedException e) {
-            Toast.makeText(context, "InterruptedException", Toast.LENGTH_SHORT).show();
+            publishProgress(new Object[]{"InterruptedException"});
             e.printStackTrace();
         }
 
@@ -85,7 +120,14 @@ public class WebPageLoader extends AsyncTask<String, Object, List<ImageObject>> 
     @Override
     protected void onProgressUpdate(Object... values) {
         super.onProgressUpdate(values);
-        dialog.setProgress((int) values[0]);
+
+        if (values[0] instanceof String) {
+            Toast.makeText(context, (String) values[0], Toast.LENGTH_SHORT).show();
+        } else if (values[0] instanceof Integer) {
+            dialog.setProgress((int) values[0]);
+        }
+
+
     }
 
     @Override

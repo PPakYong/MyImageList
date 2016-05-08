@@ -5,16 +5,18 @@ package myimagelist.yhpark.com.myimagelist.objects;
  */
 public class ImageObject {
     private String imgUrl;
+    private String imgNm;
 
-    public ImageObject(String imgUrl) {
-        setImgUrl(imgUrl);
+    public ImageObject(String imgUrl, String imgNm) {
+        this.imgUrl = imgUrl;
+        this.imgNm = imgNm;
     }
 
     public String getImgUrl() {
         return imgUrl;
     }
 
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
+    public String getImgNm() {
+        return imgNm;
     }
 }
