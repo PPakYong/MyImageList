@@ -8,7 +8,7 @@ import myimagelist.yhpark.com.myimagelist.R;
 /**
  * Created by YHPark on 2016-05-07.
  */
-public class ViewHolder { //extends RecyclerView.ViewHolder
+public class ViewHolder {
     private ImageView imageView;
 
     public ImageView getImageView() {
@@ -16,7 +16,6 @@ public class ViewHolder { //extends RecyclerView.ViewHolder
     }
 
     public ViewHolder(View itemView) {
-//        super(itemView);
         imageView = (ImageView) itemView.findViewById(R.id.imageView);
     }
 }
