@@ -39,10 +39,6 @@ public class ListAdapter extends ArrayAdapter<ImageObject> {
         //Glide Library 이용해서 web image를 가져온다.
         Glide.with(getContext())
                 .load(getItem(position).getImgUrl())    // url을 통해 이미지를 가져온다
-                .diskCacheStrategy(DiskCacheStrategy.ALL) // 원본 사이즈를 그대로 캐시에 담는다
-//                .asGif()                              // gif 이미지일 경우 호출
-//                .thumbnail(0.1f)                      // 원본 이미지의 10%를 먼저 로딩해서 썸네일로 보여준다
-                .fitCenter()                            // ScaleType을 fitCenter로 맞춰준다
                 .into(holder.getImageView());           // view에 이미지를 넣어준다
 
         return convertView;
